@@ -9,3 +9,7 @@
     font-family: 'Ubuntu', sans-serif;
   }
 }
+
+#root{
+  background-image: url(./Imgs/slider-bg.jpg);
+}
