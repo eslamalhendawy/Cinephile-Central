@@ -1,0 +1,7 @@
+API Key: 2c24297ec7388147898fc3d5f711bdb8
+
+API request:https://api.themoviedb.org/3/movie/{movie id}?api_key=2c24297ec7388147898fc3d5f711bdb8
+
+Searh Link: https://api.themoviedb.org/3/search/movie?api_key=2c24297ec7388147898fc3d5f711bdb8&query={Enter Query}
+
+Poster Link: https://image.tmdb.org/t/p/w500{poster path}
