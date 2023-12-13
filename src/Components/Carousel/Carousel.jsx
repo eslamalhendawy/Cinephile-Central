@@ -47,7 +47,7 @@ function Carousel() {
   ];
   return (
     <div className="container mx-auto px-4 sm:px-12 py-4">
-     <h2 className="text-center text-white text-xl md:text-4xl mb-4">My Personal Favourites</h2>
+     <h2 className="text-center text-white font-bold text-xl md:text-4xl mb-4">My Personal Favourites</h2>
       <Swiper
         slidesPerView={4}
         spaceBetween={10}

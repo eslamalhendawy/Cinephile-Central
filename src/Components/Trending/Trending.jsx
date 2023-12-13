@@ -18,11 +18,10 @@ function Trending() {
     getMovies();
     getShows();
   }, []);
-  console.log(showList);
   return (
     <div className="lg:max-w-full mx-auto container">
       <div className="mx-auto p-8 bg-[#020d18]">
-        <h2 className="text-white text-xl md:text-4xl mb-4">Trending Movies</h2>
+        <h2 className="text-white text-xl md:text-4xl mb-4 font-bold">Trending Movies</h2>
         <Swiper
           slidesPerView={4}
           spaceBetween={10}
@@ -63,7 +62,7 @@ function Trending() {
             );
           })}
         </Swiper>
-        <h2 className="text-white text-xl md:text-4xl my-4">Trending TV Shows</h2>
+        <h2 className="text-white text-xl md:text-4xl my-4 font-bold">Trending TV Shows</h2>
         <Swiper
           slidesPerView={4}
           spaceBetween={10}
