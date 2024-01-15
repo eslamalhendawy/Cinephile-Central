@@ -1,0 +1,18 @@
+import SideMenu from "./SideMenu";
+import logo from "../../public/Imgs/cinephile-central-high-resolution-logo-transparent.png";
+
+function Header() {
+  return (
+    <div className=" bg-[#121212]">
+      <div className="container mx-auto px-6 py-2 text-white flex items-center justify-between">
+        <img className="max-w-[180px] sm:max-w-[250px]" src={logo} alt="" />
+        <div className="flex items-center gap-3 sm:text-xl">
+          <i className="fa-solid fa-magnifying-glass"></i>
+          <SideMenu />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Header;

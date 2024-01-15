@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 
-import Header from "./Components/Header/Header";
-import HomePage from "./Components/HomePage/HomePage";
-import Footer from "./Components/Footer/Footer";
+import Header from "./Components/Header";
+import HomePage from "./Components/HomePage";
 
 import "./App.css";
 
@@ -10,11 +9,10 @@ function App() {
   return (
     <div>
       <Router>
-        <Header />
+      <Header />
         <Routes>
-          <Route path="/" exact Component={HomePage} />
+          <Route path="/" exact element={<HomePage />} />
         </Routes>
-        <Footer />
       </Router>
     </div>
   );
