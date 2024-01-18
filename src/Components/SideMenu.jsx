@@ -11,7 +11,7 @@ function SideMenu() {
   };
   return (
     <div>
-      <i className="fa-solid fa-bars" onClick={toggleMenu(true)}></i>
+      <i className="fa-solid fa-bars hover:text-[#f3c531] duration-300 cursor-pointer" onClick={toggleMenu(true)}></i>
       <Drawer anchor="right" open={openMenu} onClose={toggleMenu(false)} onOpen={toggleMenu(true)}>
         <div className="w-screen h-full md:max-w-screen-sm flex flex-col p-3 relative bg-[#1f1f1f]">
           <div className="text-2xl text-white hover:text-[#f3c531] duration-300 mb-6">
