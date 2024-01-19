@@ -3,3 +3,29 @@
     background-image: none;
   }
 }
+
+.swiper-pagination-bullet-active {
+  background-color: #f3c531 !important;
+}
+
+.swiper-pagination-bullet{
+  background-color: #f3c531 !important;
+}
+
+.swiper-button-prev {
+  color: white; 
+  transition: 0.3s;
+}
+
+.swiper-button-prev:hover{
+  color: #f3c531;
+}
+
+.swiper-button-next {
+  color: white;
+  transition: 0.3s;
+}
+
+.swiper-button-next:hover{
+  color: #f3c531;
+}

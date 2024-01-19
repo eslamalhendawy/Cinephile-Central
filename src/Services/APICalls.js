@@ -14,3 +14,25 @@ export const getMovieByID = async (id) => {
     });
   return result;
 };
+
+export const getTrendingMovies = async () => {
+  let results = {};
+  await axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=${APIKey}`)
+  .then((res) => {
+    results = res.data.results;
+  }).catch((e) => {
+   results = e;
+  });
+  return results;
+}
+
+export const getTrendingShows = async () => {
+  let results = {};
+  await axios.get(`https://api.themoviedb.org/3/trending/tv/week?api_key=${APIKey}`)
+  .then((res) => {
+    results = res.data.results;
+  }).catch((e) => {
+   results = e;
+  });
+  return results;
+}
