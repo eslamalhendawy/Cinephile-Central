@@ -26,7 +26,7 @@ function Favorites() {
       let goodWill = await getMovieByID(489);
       let benjamin = await getMovieByID(4922);
       let blade = await getMovieByID(335984);
-      setMovies([inception, prestige, batman, fightClub, seven, godfather, castAway, intersteller, mail, shawshank, mist, angryMen, goodWill, benjamin, blade]);
+      setMovies([fightClub, inception, prestige, batman, seven, godfather, castAway, intersteller, mail, shawshank, mist, angryMen, goodWill, benjamin, blade]);
     };
     getFavourites();
   }, []);
