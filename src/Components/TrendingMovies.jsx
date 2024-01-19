@@ -17,7 +17,7 @@ function TrendingMovies() {
   }, []);
   return (
     <div>
-      <h1 className="text-[#f3c531] font-bold text-3xl mb-6">Trending Movies</h1>
+      <h1 className="text-[#f3c531] font-bold text-2xl sm:text-3xl mb-6">Trending Movies</h1>
       <Swiper
         className="mb-6"
         slidesPerGroup={1}
@@ -52,7 +52,7 @@ function TrendingMovies() {
                     <i className="fa-solid fa-star text-[#f3c531]"></i>
                     <p>{movie.vote_average.toFixed(1)}</p>
                   </div>
-                  <p data-tooltip-id="my-tooltip" data-tooltip-content={movie.original_title} data-tooltip-place="top" className="text-center text-lg font-medium mb-2 truncate">
+                  <p data-tooltip-id="my-tooltip" data-tooltip-content={movie.title} data-tooltip-place="top" className="text-center text-lg font-medium mb-2 truncate">
                     {movie.original_title}
                   </p>
                   <Tooltip style={{fontSize: "18px"}} id="my-tooltip" />

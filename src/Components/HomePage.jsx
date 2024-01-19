@@ -1,6 +1,8 @@
 import Favorites from "./Favorites";
 import TrendingMovies from "./TrendingMovies";
 import TrendingShows from "./TrendingShows";
+import MovieOfTheWeek from "./MovieOfTheWeek";
+import ShowOfTheWeek from "./ShowOfTheWeek";
 
 function HomePage() {
   
@@ -11,6 +13,8 @@ function HomePage() {
         <Favorites />
         <TrendingMovies />
         <TrendingShows />
+        <MovieOfTheWeek />
+        <ShowOfTheWeek />
       </div>
     </div>
   );

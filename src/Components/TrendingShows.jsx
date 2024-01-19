@@ -17,7 +17,7 @@ function TrendingShows() {
   }, []);
   return (
     <div>
-      <h1 className="text-[#f3c531] font-bold text-3xl mb-6">Trending TV Shows</h1>
+      <h1 className="text-[#f3c531] font-bold text-2xl sm:text-3xl mb-6">Trending TV Shows</h1>
       <Swiper
         className="mb-6"
         slidesPerGroup={1}

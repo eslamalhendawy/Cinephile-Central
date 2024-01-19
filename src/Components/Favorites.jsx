@@ -65,7 +65,7 @@ function Favorites() {
         {movies.map((movie, index) => {
           return (
             <SwiperSlide key={index}>
-              <div className={`mx-12 flex justify-center items-center relative bg-cover p-6`}>
+              <div className={`mx-12 flex justify-center items-center relative bg-cover p-2`}>
                 <div className="relative lg:absolute z-10 top-0">
                   <img className="" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
                 </div>
