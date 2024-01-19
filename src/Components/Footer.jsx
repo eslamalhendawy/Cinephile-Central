@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import logo from "../../public/Imgs/cinephile-central-high-resolution-logo-transparent.png";
 function Footer() {
   return (
@@ -20,7 +22,9 @@ function Footer() {
           <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300">TV Shows</li>
         </ul>
         <div className="flex justify-center">
+        <Link to="/">
           <img className="max-w-[150px] sm:max-w-[250px]" src={logo} alt="" />
+        </Link>
         </div>
       </div>
     </div>

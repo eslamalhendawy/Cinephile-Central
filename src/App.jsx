@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 
 import Header from "./Components/Header";
 import HomePage from "./Components/HomePage";
+import SearchResults from "./Components/SearchResults";
 
 import Footer from "./Components/Footer";
 
@@ -11,9 +12,10 @@ function App() {
   return (
     <div>
       <Router>
-      <Header />
+        <Header />
         <Routes>
           <Route path="/" exact element={<HomePage />} />
+          <Route path="/search/:type/:query" exact element={<SearchResults />} />
         </Routes>
         <Footer />
       </Router>

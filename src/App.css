@@ -29,3 +29,11 @@
 .swiper-button-next:hover{
   color: #f3c531;
 }
+
+.active{
+  color: #f3c531;
+}
+
+.minHeight {
+  min-height: calc(100vh - 145px);
+}

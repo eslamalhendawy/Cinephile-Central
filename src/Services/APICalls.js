@@ -68,3 +68,15 @@ export const getShowOfTheWeek = async () => {
     });
   return result;
 };
+
+export const search = async (type, query, page) => {
+  let results = {};
+  await axios.get(`https://api.themoviedb.org/3/search/${type}?api_key=${APIKey}&query=${query}&certification.lte=R&page=${page}`)
+  .then((res) => {
+    results = res.data;
+  })
+  .catch((e) => {
+    results = e;
+  })
+  return results;
+}

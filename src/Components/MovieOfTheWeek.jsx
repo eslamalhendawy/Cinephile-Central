@@ -4,6 +4,7 @@ import { getMovieOfTheWeek } from "../Services/APICalls";
 function MovieOfTheWeek() {
   const [movie, setMovie] = useState();
   const [fetching, setFetching] = useState(true);
+  
 
   useEffect(() => {
     const fetchData = async () => {
