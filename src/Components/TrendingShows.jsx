@@ -45,7 +45,7 @@ function TrendingShows() {
             <SwiperSlide className="mb-12" key={index}>
               <div className="group cursor-pointer">
                 <div>
-                  <img className="h-[250px] md:h-[450px]" src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt="" />
+                  <img className="max-w-full" src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt="" />
                 </div>
                 <div className="bg-[#1a1a1a] p-3">
                   <div className="flex items-center gap-2 mb-2">

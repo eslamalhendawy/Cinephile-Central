@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from "react-route
 import Header from "./Components/Header";
 import HomePage from "./Components/HomePage";
 
+import Footer from "./Components/Footer";
+
 import "./App.css";
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<HomePage />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
