@@ -17,10 +17,23 @@ export const getMovieByID = async (id) => {
   return result;
 };
 
-export const getMoviePageDate = async (id) => {
+export const getMoviePageData = async (id) => {
   let result = {};
   await axios
     .get(`https://api.themoviedb.org/3/movie/${id}?api_key=${APIKey}&append_to_response=videos,images,credits`)
+    .then((res) => {
+      result = res.data;
+    })
+    .catch((e) => {
+      result = e;
+    });
+  return result;
+};
+
+export const getShowPageData = async (id) => {
+  let result = {};
+  await axios
+    .get(`https://api.themoviedb.org/3/tv/${id}?api_key=${APIKey}&append_to_response=videos,images,credits`)
     .then((res) => {
       result = res.data;
     })
@@ -34,6 +47,19 @@ export const getMoviesByGenre = async (genre) => {
   let results = {};
   await axios
     .get(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKey}&with_genres=${genre}`)
+    .then((res) => {
+      results = res;
+    })
+    .catch((e) => {
+      results = e;
+    });
+  return results;
+};
+
+export const getShowsByGenre = async (genre) => {
+  let results = {};
+  await axios
+    .get(`https://api.themoviedb.org/3/discover/tv?api_key=${APIKey}&with_genres=${genre}`)
     .then((res) => {
       results = res;
     })

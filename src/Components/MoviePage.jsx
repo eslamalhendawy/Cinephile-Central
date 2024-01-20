@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMoviePageDate } from "../Services/APICalls";
+import { getMoviePageData } from "../Services/APICalls";
 import { getMoviesByGenre } from "../Services/APICalls";
 import MovieSlider from "./MovieSlider";
 
@@ -13,7 +13,7 @@ function MoviePage() {
   useEffect(() => {
     document.title = `Cinephile Central | ${fetching ? "" : movie.title}`;
     window.scrollTo(0, 0);
-  }, [movie])
+  }, [movie]);
 
   useEffect(() => {
     setFetching(true);
@@ -22,8 +22,7 @@ function MoviePage() {
     let parts = decodedURL.split("/");
     const id = parts[parts.length - 1];
     const fetchData = async () => {
-      let temp = await getMoviePageDate(id);
-      console.log(temp);
+      let temp = await getMoviePageData(id);
       let tempRuntime = temp.runtime;
       let hours = Math.floor(tempRuntime / 60);
       setHours(hours);
@@ -46,7 +45,7 @@ function MoviePage() {
   return (
     <div className="bg-white">
       {fetching ? (
-        ""
+        <div className="minHeight bg-[#121212]"></div>
       ) : (
         <>
           <div className="bg-cover bg-center" style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})` }}>
@@ -77,12 +76,16 @@ function MoviePage() {
                     <img className="sm:max-w-[250px] lg:max-w-[300px]" src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} alt="" />
                   </div>
                   <div className="w-full relative group">
-                    <a href={`https://www.youtube.com/watch?v=${movie.videos.results[movie.videos.results.length - 1].key}`}>
-                      <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[1].file_path}`} alt="" />
-                      <div className="absolute top-0 right-0 flex justify-center items-center w-full h-full bg-black/80">
-                        <p className="text-xl font-semibold group-hover:text-[#f3c531] duration-300">Watch Trailer</p>
-                      </div>
-                    </a>
+                    {movie.videos.results.length !== 0 ? (
+                      <a href={`https://www.youtube.com/watch?v=${movie.videos.results[movie.videos.results.length - 1].key}`}>
+                        <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[1].file_path}`} alt="" />
+                        <div className="absolute top-0 right-0 flex justify-center items-center w-full h-full bg-black/80">
+                          <p className="text-xl font-semibold group-hover:text-[#f3c531] duration-300">Watch Trailer</p>
+                        </div>
+                      </a>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
                 <div className="flex justify-center sm:justify-start gap-2 mb-4">
@@ -100,9 +103,15 @@ function MoviePage() {
                 <p className="border-b border-gray-500 mb-2"></p>
                 <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Staring</h3>
                 <div className="flex gap-2 text-[#5e99ed] lg:text-lg mb-2">
-                  <p>{movie.credits.cast[0].name}</p>
-                  <p>{movie.credits.cast[1].name}</p>
-                  <p>{movie.credits.cast[2].name}</p>
+                  {movie.credits.cast.length >= 3 ? (
+                    <>
+                      <p>{movie.credits.cast[0].name}</p>
+                      <p>{movie.credits.cast[1].name}</p>
+                      <p>{movie.credits.cast[2].name}</p>
+                    </>
+                  ) : (
+                    <p>No Cast Members Found</p>
+                  )}
                 </div>
                 <p className="border-b border-gray-500 mb-2"></p>
                 <div className=" items-center justify-between sm:justify-normal sm:gap-x-40">

@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { getMovieOfTheWeek } from "../Services/APICalls";
 
 function MovieOfTheWeek() {
   const [movie, setMovie] = useState();
   const [fetching, setFetching] = useState(true);
-  
 
   useEffect(() => {
     const fetchData = async () => {
       let temp = await getMovieOfTheWeek();
+      console.log(temp);
       setMovie(temp);
       setFetching(false);
     };
@@ -32,8 +33,12 @@ function MovieOfTheWeek() {
                 </div>
               </div>
               <p className="text-lg ml-2 hidden md:block mb-12 lg:w-[80%]">{movie.overview}</p>
-              <p className="w-fit ml-auto  border-b-2 text-xl font-bold hover:text-[#f3c531] duration-300 border-[#f3c531] cursor-pointer hidden md:block">Movie Page</p>
-              <p className="bg-[#2c2c2c] w-[250px] group-hover:bg-[#30353c] duration-300 p-2 sm:text-xl text-center text-[#5e99ed] font-bold cursor-pointer md:hidden">Movie Page</p>
+              <Link to={`/movie/${movie.id}`}>
+                <p className="w-fit ml-auto  border-b-2 text-xl font-bold hover:text-[#f3c531] duration-300 border-[#f3c531] cursor-pointer hidden md:block">Movie Page</p>
+              </Link>
+              <Link to={`/movie/${movie.id}`}>
+                <p className="bg-[#2c2c2c] w-[250px] group-hover:bg-[#30353c] duration-300 p-2 sm:text-xl text-center text-[#5e99ed] font-bold cursor-pointer md:hidden">Movie Page</p>
+              </Link>
             </>
           )}
         </div>

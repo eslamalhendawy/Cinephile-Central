@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Drawer from "@mui/material/SwipeableDrawer";
 
 function SideMenu() {
@@ -17,10 +18,13 @@ function SideMenu() {
           <div className="text-2xl text-white hover:text-[#f3c531] duration-300 mb-6">
             <i className="fa-solid fa-x" onClick={toggleMenu(false)}></i>
           </div>
-          <div className="text-white flex items-center gap-2 text-xl hover:text-[#f3c531] duration-300 mb-3">
-            <i className="fa-solid fa-home"></i>
-            <p>Home Page</p>
-          </div>
+          <Link to="/" onClick={toggleMenu(false)}>
+            <div className="text-white flex items-center gap-2 text-xl hover:text-[#f3c531] duration-300 mb-3">
+              <i className="fa-solid fa-home"></i>
+              <p>Home Page</p>
+            </div>
+          </Link>
+
           <div className="text-white flex items-center gap-2 text-xl hover:text-[#f3c531] duration-300 mb-3">
             <i className="fa-solid fa-film"></i>
             <p>Movies</p>

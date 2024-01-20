@@ -17,7 +17,7 @@ function Footer() {
           </a>
         </div>
         <ul className="flex flex-col sm:flex-row gap-3 sm:justify-center items-center mb-3">
-          <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300 ">Home Page</li>
+          <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300 "><Link to="/">Home Page</Link></li>
           <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300">Movies</li>
           <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300">TV Shows</li>
         </ul>

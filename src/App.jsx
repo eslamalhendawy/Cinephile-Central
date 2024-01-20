@@ -19,7 +19,7 @@ function App() {
           <Route path="/" exact element={<HomePage />} />
           <Route path="/search/:type/:query" exact element={<SearchResults />} />
           <Route path="/movie/:id" exact element={<MoviePage />} />
-          <Route path="/show/:id" exact element={<ShowPage />} />
+          <Route path="/tv/:id" exact element={<ShowPage />} />
         </Routes>
         <Footer />
       </Router>
