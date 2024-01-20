@@ -23,7 +23,6 @@ function MoviePage() {
     const id = parts[parts.length - 1];
     const fetchData = async () => {
       let temp = await getMoviePageData(id);
-      console.log(temp);
       let tempRuntime = temp.runtime;
       let hours = Math.floor(tempRuntime / 60);
       setHours(hours);

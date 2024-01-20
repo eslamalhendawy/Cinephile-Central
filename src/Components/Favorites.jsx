@@ -28,7 +28,6 @@ function Favorites() {
       let goodWill = await getMovieByID(489);
       let benjamin = await getMovieByID(4922);
       let blade = await getMovieByID(335984);
-      console.log(blade);
       setMovies([fightClub, inception, intersteller, prestige, batman, seven, godfather, castAway, mail, shawshank, mist, angryMen, goodWill, benjamin, blade]);
     };
     getFavourites();

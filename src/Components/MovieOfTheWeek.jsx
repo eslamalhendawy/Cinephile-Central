@@ -9,7 +9,6 @@ function MovieOfTheWeek() {
   useEffect(() => {
     const fetchData = async () => {
       let temp = await getMovieOfTheWeek();
-      console.log(temp);
       setMovie(temp);
       setFetching(false);
     };

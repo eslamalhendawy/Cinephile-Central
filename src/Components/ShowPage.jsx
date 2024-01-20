@@ -20,7 +20,6 @@ function ShowPage() {
     const id = parts[parts.length - 1];
     const fetchData = async () => {
       let temp = await getShowPageData(id);
-      console.log(temp);
       setShow(temp);
       setFetching(false);
     };

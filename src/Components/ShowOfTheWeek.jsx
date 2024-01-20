@@ -33,10 +33,10 @@ function ShowOfTheWeek() {
                 </div>
               </div>
               <p className="text-lg ml-2 hidden md:block mb-12 lg:w-[80%]">{show.overview}</p>
-              <Link to={`/show/${show.id}`}>
+              <Link to={`/tv/${show.id}`}>
                 <p className="w-fit ml-auto  border-b-2 text-xl font-bold hover:text-[#f3c531] duration-300 border-[#f3c531] cursor-pointer hidden md:block">TV Show Page</p>
               </Link>
-              <Link to={`/show/${show.id}`}>
+              <Link to={`/tv/${show.id}`}>
                 <p className="bg-[#2c2c2c] w-[250px] group-hover:bg-[#30353c] duration-300 p-2 sm:text-xl text-center text-[#5e99ed] font-bold cursor-pointer md:hidden">TV Show Page</p>
               </Link>
             </>
