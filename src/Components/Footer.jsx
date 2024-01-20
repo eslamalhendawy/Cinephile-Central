@@ -17,15 +17,28 @@ function Footer() {
           </a>
         </div>
         <ul className="flex flex-col sm:flex-row gap-3 sm:justify-center items-center mb-3">
-          <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300 "><Link to="/">Home Page</Link></li>
-          <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300">Movies</li>
-          <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300">TV Shows</li>
+          <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300 ">
+            <Link onClick={() => window.scroll(0, 0)} to="/">
+              Home Page
+            </Link>
+          </li>
+          <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300">
+            <Link onClick={() => window.scroll(0, 0)} to="/movies">
+              Movies
+            </Link>
+          </li>
+          <li className="text-white font-semibold sm:text-lg text-center hover:text-[#f3c531] duration-300">
+            <Link onClick={() => window.scroll(0, 0)} to="/shows">
+              TV Shows
+            </Link>
+          </li>
         </ul>
-        <div className="flex justify-center">
-        <Link to="/">
-          <img className="max-w-[150px] sm:max-w-[250px]" src={logo} alt="" />
-        </Link>
+        <div className="flex justify-center mb-2">
+          <Link to="/">
+            <img className="max-w-[150px] sm:max-w-[250px]" src={logo} alt="" />
+          </Link>
         </div>
+        <p className="text-white text-center">© Copyright 2024 Eslam Alhendawy</p>
       </div>
     </div>
   );

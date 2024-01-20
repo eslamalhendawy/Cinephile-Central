@@ -24,15 +24,18 @@ function SideMenu() {
               <p>Home Page</p>
             </div>
           </Link>
-
-          <div className="text-white flex items-center gap-2 text-xl hover:text-[#f3c531] duration-300 mb-3">
-            <i className="fa-solid fa-film"></i>
-            <p>Movies</p>
-          </div>
-          <div className="text-white flex items-center gap-2 text-xl hover:text-[#f3c531] duration-300">
-            <i className="fa-solid fa-tv"></i>
-            <p>TV Shows</p>
-          </div>
+          <Link to="/movies" onClick={toggleMenu(false)}>
+            <div className="text-white flex items-center gap-2 text-xl hover:text-[#f3c531] duration-300 mb-3">
+              <i className="fa-solid fa-film"></i>
+              <p>Movies</p>
+            </div>
+          </Link>
+          <Link to="/shows" onClick={toggleMenu(false)}>
+            <div className="text-white flex items-center gap-2 text-xl hover:text-[#f3c531] duration-300">
+              <i className="fa-solid fa-tv"></i>
+              <p>TV Shows</p>
+            </div>
+          </Link>
         </div>
       </Drawer>
     </div>

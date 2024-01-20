@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { getMovieByID } from "../Services/APICalls";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -8,6 +9,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 
 function Favorites() {
+  const navigate = useNavigate();
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     const getFavourites = async () => {
@@ -26,6 +28,7 @@ function Favorites() {
       let goodWill = await getMovieByID(489);
       let benjamin = await getMovieByID(4922);
       let blade = await getMovieByID(335984);
+      console.log(blade);
       setMovies([fightClub, inception, intersteller, prestige, batman, seven, godfather, castAway, mail, shawshank, mist, angryMen, goodWill, benjamin, blade]);
     };
     getFavourites();
@@ -38,15 +41,22 @@ function Favorites() {
         <Swiper className="mb-6 basis-3/4 hidden lg:block" navigation={true} modules={[Navigation]}>
           {movies.map((movie, index) => {
             return (
-              <SwiperSlide className="relative" key={index}>
-              <div className="absolute bg-black/70 w-full h-full z-10"></div>
+              <SwiperSlide
+                onClick={() => {
+                  navigate(`/movie/${movie.id}`);
+                  location.reload();
+                }}
+                className="relative cursor-pointer group"
+                key={index}
+              >
+                <div className="absolute bg-black/70 w-full h-full z-10 "></div>
                 <div className={`mx-12 flex justify-center items-center relative bg-cover p-6`}>
                   <div className="hidden lg:block">
                     <img className="" src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt="" />
                   </div>
                   <div className="absolute z-20 bottom-10 left-10 flex flex-row-reverse items-center">
                     <div className="flex flex-col gap-2 p-2">
-                      <h2 className="text-3xl font-bold text-nowrap text-[#f3c531] rounded-lg w-fit">{movie.original_title}</h2>
+                      <h2 className="text-3xl font-bold text-nowrap group-hover:text-[#f3c531] duration-300 rounded-lg w-fit">{movie.original_title}</h2>
                       <p className="text-xl font-medium text-nowrap w-[85%] rounded-lg text-white">{movie.tagline}</p>
                     </div>
                     <img className=" max-w-[150px] xl:max-w-[200px]" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
@@ -64,7 +74,14 @@ function Favorites() {
       <Swiper className="mb-6 basis-3/4 block lg:hidden" navigation={true} modules={[Navigation]}>
         {movies.map((movie, index) => {
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide
+              onClick={() => {
+                navigate(`/movie/${movie.id}`);
+                location.reload();
+              }}
+              className="cursor-pointer"
+              key={index}
+            >
               <div className={`mx-12 flex justify-center items-center relative bg-cover p-2`}>
                 <div className="relative lg:absolute z-10 top-0">
                   <img className="" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />

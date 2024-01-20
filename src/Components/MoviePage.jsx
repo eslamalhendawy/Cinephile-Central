@@ -84,7 +84,9 @@ function MoviePage() {
                         </div>
                       </a>
                     ) : (
-                      ""
+                      <div className="flex justify-center items-center h-full">
+                        <p className="text-xl font-semibold">No Trailer Found</p>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -97,9 +99,13 @@ function MoviePage() {
                     );
                   })}
                 </div>
-                <p className="mb-2 font-medium lg:text-lg">&quot;{movie.tagline}&quot;</p>
-                <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Overview</h3>
-                <p className="font-medium lg:max-w-[75%] lg:text-lg mb-2">{movie.overview}</p>
+                {movie.tagline ? <p className="mb-2 font-medium lg:text-lg">&quot;{movie.tagline}&quot;</p> : null}
+                {movie.overview ? (
+                  <>
+                    <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Overview</h3>
+                    <p className="font-medium lg:max-w-[75%] lg:text-lg mb-2">{movie.overview}</p>
+                  </>
+                ) : null}
                 <p className="border-b border-gray-500 mb-2"></p>
                 <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Staring</h3>
                 <div className="flex gap-2 text-[#5e99ed] lg:text-lg mb-2">

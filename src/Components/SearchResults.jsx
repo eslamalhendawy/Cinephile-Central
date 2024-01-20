@@ -13,6 +13,11 @@ function SearchResults() {
   const [type, setType] = useState();
   const [fetching, setFetching] = useState(true);
 
+  useEffect(() => {
+    document.title = `Cinephile Central | Search`;
+    window.scrollTo(0, 0);
+  },[])
+
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected + 1);
     window.scrollTo(0, 0);
