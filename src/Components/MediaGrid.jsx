@@ -11,7 +11,7 @@ function MediaGrid({ item , type}) {
               {type == "movie" ? item.title : item.name}
             </p>
             <Tooltip style={{ fontSize: "18px" }} id="my-tooltip" />
-            <p className="text-lg font-medium">{type == "movie" ? item.release_date.split("-")[0] : item.first_air_date.split("-")[0]}</p>
+            <p className="text-lg font-medium">{type == "movie" ? F : item.first_air_date.split("-")[0]}</p>
           </div>
         );
       })}

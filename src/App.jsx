@@ -1,8 +1,10 @@
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Header from "./Components/Header";
 import HomePage from "./Components/HomePage";
 import SearchResults from "./Components/SearchResults";
+import MoviePage from "./Components/MoviePage";
+import ShowPage from "./Components/ShowPage";
 
 import Footer from "./Components/Footer";
 
@@ -16,6 +18,8 @@ function App() {
         <Routes>
           <Route path="/" exact element={<HomePage />} />
           <Route path="/search/:type/:query" exact element={<SearchResults />} />
+          <Route path="/movie/:id" exact element={<MoviePage />} />
+          <Route path="/show/:id" exact element={<ShowPage />} />
         </Routes>
         <Footer />
       </Router>

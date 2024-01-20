@@ -17,6 +17,19 @@ export const getMovieByID = async (id) => {
   return result;
 };
 
+export const getMoviePageDate = async (id) => {
+  let result = {};
+  await axios
+    .get(`https://api.themoviedb.org/3/movie/${id}?api_key=${APIKey}&append_to_response=videos,images,credits`)
+    .then((res) => {
+      result = res.data;
+    })
+    .catch((e) => {
+      result = e;
+    });
+  return result;
+}
+
 export const getTrendingMovies = async () => {
   let results = {};
   await axios

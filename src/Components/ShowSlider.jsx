@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { Tooltip } from "react-tooltip";
@@ -31,7 +32,8 @@ function ShowSlider({ list }) {
       {list.map((show, index) => {
         return (
           <SwiperSlide className="mb-12" key={index}>
-            <div className="group cursor-pointer">
+          <Link to={`/show/${show.id}`}>
+          <div className="group cursor-pointer">
               <div>
                 <img className="max-w-full" src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt="" />
               </div>
@@ -47,6 +49,7 @@ function ShowSlider({ list }) {
                 <p className="bg-[#2c2c2c] group-hover:bg-[#30353c] duration-300 p-2 text-center text-[#5e99ed] font-bold cursor-pointer">More Info</p>
               </div>
             </div>
+          </Link>
           </SwiperSlide>
         );
       })}
