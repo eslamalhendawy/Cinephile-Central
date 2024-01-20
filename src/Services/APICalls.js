@@ -28,7 +28,20 @@ export const getMoviePageDate = async (id) => {
       result = e;
     });
   return result;
-}
+};
+
+export const getMoviesByGenre = async (genre) => {
+  let results = {};
+  await axios
+    .get(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKey}&with_genres=${genre}`)
+    .then((res) => {
+      results = res;
+    })
+    .catch((e) => {
+      results = e;
+    });
+  return results;
+};
 
 export const getTrendingMovies = async () => {
   let results = {};
@@ -84,12 +97,13 @@ export const getShowOfTheWeek = async () => {
 
 export const search = async (type, query, page) => {
   let results = {};
-  await axios.get(`https://api.themoviedb.org/3/search/${type}?api_key=${APIKey}&query=${query}&certification.lte=R&page=${page}`)
-  .then((res) => {
-    results = res.data;
-  })
-  .catch((e) => {
-    results = e;
-  })
+  await axios
+    .get(`https://api.themoviedb.org/3/search/${type}?api_key=${APIKey}&query=${query}&certification.lte=R&page=${page}`)
+    .then((res) => {
+      results = res.data;
+    })
+    .catch((e) => {
+      results = e;
+    });
   return results;
-}
+};

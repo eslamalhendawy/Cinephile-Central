@@ -1,34 +1,48 @@
 import { useEffect, useState } from "react";
 import { getMoviePageDate } from "../Services/APICalls";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
+import { getMoviesByGenre } from "../Services/APICalls";
+import MovieSlider from "./MovieSlider";
 
 function MoviePage() {
   const [movie, setMovie] = useState();
+  const [similar, setSimilar] = useState(null);
   const [hours, setHours] = useState();
   const [minutes, setMinutes] = useState();
   const [fetching, setFetching] = useState(true);
+
   useEffect(() => {
+    document.title = `Cinephile Central | ${fetching ? "" : movie.title}`;
+    window.scrollTo(0, 0);
+  }, [movie])
+
+  useEffect(() => {
+    setFetching(true);
     let currentURL = window.location.href;
     let decodedURL = decodeURIComponent(currentURL);
     let parts = decodedURL.split("/");
     const id = parts[parts.length - 1];
     const fetchData = async () => {
       let temp = await getMoviePageDate(id);
+      console.log(temp);
       let tempRuntime = temp.runtime;
       let hours = Math.floor(tempRuntime / 60);
       setHours(hours);
       let minutes = tempRuntime % 60;
       setMinutes(minutes);
-      console.log(temp);
       setMovie(temp);
       setFetching(false);
     };
     fetchData();
-  }, []);
-
+    const fetchSimilar = async () => {
+      if (fetching) {
+        return;
+      } else {
+        let temp = await getMoviesByGenre(movie.genres[0].id);
+        setSimilar(temp.data.results);
+      }
+    };
+    fetchSimilar();
+  }, [fetching]);
   return (
     <div className="bg-white">
       {fetching ? (
@@ -81,19 +95,51 @@ function MoviePage() {
                   })}
                 </div>
                 <p className="mb-2 font-medium lg:text-lg">&quot;{movie.tagline}&quot;</p>
-                <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-2">Overview</h3>
+                <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Overview</h3>
                 <p className="font-medium lg:max-w-[75%] lg:text-lg mb-2">{movie.overview}</p>
                 <p className="border-b border-gray-500 mb-2"></p>
-                <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-2">Staring</h3>
-                <div className="flex gap-2 text-[#5e99ed] lg:text-lg ">
+                <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Staring</h3>
+                <div className="flex gap-2 text-[#5e99ed] lg:text-lg mb-2">
                   <p>{movie.credits.cast[0].name}</p>
                   <p>{movie.credits.cast[1].name}</p>
                   <p>{movie.credits.cast[2].name}</p>
                 </div>
+                <p className="border-b border-gray-500 mb-2"></p>
+                <div className=" items-center justify-between sm:justify-normal sm:gap-x-40">
+                  <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Official Site</h3>
+                  <a className="text-[#5e99ed] hover:text-[#45638d] duration-300 lg:text-lg" href={movie.homepage}>
+                    Visit
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-          
+          <div className="container mx-auto px-6 py-4">
+            <h3 className="text-[#212121] font-semibold text-3xl mb-1 border-l-4 pl-2 border-[#f3c531]">Photos</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+              {movie.images.backdrops.slice(0, 6).map((image, index) => {
+                return (
+                  <div key={index}>
+                    <img src={`https://image.tmdb.org/t/p/original${image.file_path}`} alt="" />
+                  </div>
+                );
+              })}
+            </div>
+            <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Video Links</h3>
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 mb-6">
+              {movie.videos.results.slice(0, 6).map((video, index) => {
+                return (
+                  <div key={index}>
+                    <a className="text-[#5e99ed] hover:text-[#45638d] duration-300 lg:text-lg" href={`https://www.youtube.com/watch?v=${video.key}`}>
+                      {video.name}
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+            <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Similar Movies</h3>
+            {similar == null ? "" : <MovieSlider list={similar} />}
+          </div>
         </>
       )}
     </div>

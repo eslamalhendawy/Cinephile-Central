@@ -29,6 +29,7 @@ function SearchResults() {
     setType(type);
     const fetchData = async () => {
       let temp = await search(type, searchTerm, currentPage);
+      console.log(temp);
       setResults(temp.results);
       setResCount(temp.total_results);
       setNumberPages(temp.total_pages);
