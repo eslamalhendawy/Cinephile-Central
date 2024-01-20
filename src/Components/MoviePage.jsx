@@ -124,28 +124,42 @@ function MoviePage() {
             </div>
           </div>
           <div className="container mx-auto px-6 py-4">
-            <h3 className="text-[#212121] font-semibold text-3xl mb-1 border-l-4 pl-2 border-[#f3c531]">Photos</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-              {movie.images.backdrops.slice(0, 6).map((image, index) => {
-                return (
-                  <div key={index}>
-                    <img src={`https://image.tmdb.org/t/p/original${image.file_path}`} alt="" />
-                  </div>
-                );
-              })}
-            </div>
-            <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Video Links</h3>
-            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 mb-6">
-              {movie.videos.results.slice(0, 6).map((video, index) => {
-                return (
-                  <div key={index}>
-                    <a className="text-[#5e99ed] hover:text-[#45638d] duration-300 lg:text-lg" href={`https://www.youtube.com/watch?v=${video.key}`}>
-                      {video.name}
-                    </a>
-                  </div>
-                );
-              })}
-            </div>
+            {movie.images.backdrops.length > 0 ? (
+              <>
+                <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Photos</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                  {movie.images.backdrops.slice(0, 6).map((image, index) => {
+                    return (
+                      <div key={index}>
+                        <img src={`https://image.tmdb.org/t/p/original${image.file_path}`} alt="" />
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              ""
+            )}
+            {movie.videos.results.length > 0 ? (
+              <>
+                <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Video Links</h3>
+                <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 mb-6">
+                  {movie.videos.results.slice(0, 6).map((video, index) => {
+                    return (
+                      <div key={index}>
+                        <a className="text-[#5e99ed] hover:text-[#45638d] duration-300 lg:text-lg" href={`https://www.youtube.com/watch?v=${video.key}`}>
+                          {video.name}
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              ""
+            )}
+
+            <div>{movie.videos.results.length > 0 ? "" : ""}</div>
             <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Similar Movies</h3>
             {similar == null ? "" : <MovieSlider list={similar} />}
           </div>
@@ -153,6 +167,17 @@ function MoviePage() {
       )}
     </div>
   );
+}
+{
+  /* (movie.videos.results.slice(0, 6).map((video, index) => {
+                return (
+                  <div key={index}>
+                    <a className="text-[#5e99ed] hover:text-[#45638d] duration-300 lg:text-lg" href={`https://www.youtube.com/watch?v=${video.key}`}>
+                      {video.name}
+                    </a>
+                  </div>
+                );
+              })) */
 }
 
 export default MoviePage;

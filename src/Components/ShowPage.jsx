@@ -51,7 +51,7 @@ function ShowPage() {
                     <div className="flex items-center gap-2">
                       <p className="text-lg">({show.first_air_date.split("-")[0]})</p>
                       <p className="text-lg">
-                        {show.number_of_seasons} (seasons) {show.number_of_episodes} (episodes)
+                        ({show.number_of_seasons} seasons) ({show.number_of_episodes} episodes)
                       </p>
                     </div>
                   </div>
@@ -103,7 +103,6 @@ function ShowPage() {
                       <p>{show.credits.cast[1].name}</p>
                       <p>{show.credits.cast[2].name}</p>
                     </>
-                    
                   ) : (
                     <p>No Cast Members Found</p>
                   )}
@@ -119,28 +118,41 @@ function ShowPage() {
             </div>
           </div>
           <div className="container mx-auto px-6 py-4">
-            <h3 className="text-[#212121] font-semibold text-3xl mb-1 border-l-4 pl-2 border-[#f3c531]">Photos</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-              {show.images.backdrops.slice(0, 6).map((image, index) => {
-                return (
-                  <div key={index}>
-                    <img src={`https://image.tmdb.org/t/p/original${image.file_path}`} alt="" />
-                  </div>
-                );
-              })}
-            </div>
-            <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Video Links</h3>
-            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 mb-6">
-              {show.videos.results.slice(0, 6).map((video, index) => {
-                return (
-                  <div key={index}>
-                    <a className="text-[#5e99ed] hover:text-[#45638d] duration-300 lg:text-lg" href={`https://www.youtube.com/watch?v=${video.key}`}>
-                      {video.name}
-                    </a>
-                  </div>
-                );
-              })}
-            </div>
+            {show.images.backdrops.length > 0 ? (
+              <>
+                <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Photos</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                  {show.images.backdrops.slice(0, 6).map((image, index) => {
+                    return (
+                      <div key={index}>
+                        <img src={`https://image.tmdb.org/t/p/original${image.file_path}`} alt="" />
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              ""
+            )}
+            {show.videos.results.length > 0 ? (
+              <>
+                <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Video Links</h3>
+                <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 mb-6">
+                  {show.videos.results.slice(0, 6).map((video, index) => {
+                    return (
+                      <div key={index}>
+                        <a className="text-[#5e99ed] hover:text-[#45638d] duration-300 lg:text-lg" href={`https://www.youtube.com/watch?v=${video.key}`}>
+                          {video.name}
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              ""
+            )}
+
             <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Similar TV Shows</h3>
             {similar == null ? "" : <ShowSlider list={similar} />}
           </div>
