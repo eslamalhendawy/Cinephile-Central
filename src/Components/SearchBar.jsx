@@ -24,6 +24,12 @@ function SearchBar() {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if(e.key === "Enter"){
+      search();
+    }
+  }
+
   return (
     <div>
       <i onClick={toggleMenu(true)} className="fa-solid fa-magnifying-glass hover:text-[#f3c531] duration-300 cursor-pointer text-xl"></i>
@@ -37,7 +43,7 @@ function SearchBar() {
               TV Shows
             </option>
           </select>
-          <input value={query} onChange={(e) => setQuery(e.target.value)} className="block w-full bg-[#1f1f1f] py-3 sm:py-4 px-1 focus:outline-none focus:placeholder:opacity-0 placeholder:text-[#70756a] placeholder:duration-300 text-white text-sm sm:text-lg" type="text" placeholder="Search Cinephile Central" />
+          <input onKeyDown={handleKeyPress} value={query} onChange={(e) => setQuery(e.target.value)} className="block w-full bg-[#1f1f1f] py-3 sm:py-4 px-1 focus:outline-none focus:placeholder:opacity-0 placeholder:text-[#70756a] placeholder:duration-300 text-white text-sm sm:text-lg" type="text" placeholder="Search Cinephile Central" />
           <div className="flex items-center gap-2 sm:gap-4">
             <i onClick={() => search()} className="fa-solid fa-magnifying-glass text-white hover:text-[#f3c531] duration-300 text-sm sm:text-lg cursor-pointer"
             ></i>
