@@ -23,6 +23,7 @@ function MoviePage() {
     const id = parts[parts.length - 1];
     const fetchData = async () => {
       let temp = await getMoviePageData(id);
+      console.log(temp);
       let tempRuntime = temp.runtime;
       let hours = Math.floor(tempRuntime / 60);
       setHours(hours);
@@ -78,7 +79,7 @@ function MoviePage() {
                   <div className="w-full relative group">
                     {movie.videos.results.length !== 0 ? (
                       <a href={`https://www.youtube.com/watch?v=${movie.videos.results[movie.videos.results.length - 1].key}`}>
-                        <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[1].file_path}`} alt="" />
+                        <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[0].file_path}`} alt="" />
                         <div className="absolute top-0 right-0 flex justify-center items-center w-full h-full bg-black/80">
                           <p className="text-xl font-semibold group-hover:text-[#f3c531] duration-300">Watch Trailer</p>
                         </div>

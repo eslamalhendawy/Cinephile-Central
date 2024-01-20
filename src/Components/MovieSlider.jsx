@@ -33,14 +33,14 @@ function MovieSlider({ list }) {
       {list.map((movie, index) => {
         return (
           <SwiperSlide className="mb-12" key={index}>
-            <div onClick={() => {
-              navigate(`/movie/${movie.id}`);
-              location.reload();
-            }}>
+            <div
+              onClick={() => {
+                navigate(`/movie/${movie.id}`);
+                location.reload();
+              }}
+            >
               <div className="group cursor-pointer">
-                <div>
-                  <img className="max-w-full" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
-                </div>
+                <div>{movie.poster_path == null ? <div className="bg-[#121212] max-w-[290px] h-[180px] sm:h-[320px] lg:h-[400px] flex justify-center items-center border-4 border-white">No Poster Found</div> : <img className="max-w-full border-4 border-white" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />}</div>
                 <div className="bg-[#1a1a1a] p-3">
                   <div className="flex items-center gap-2 mb-2">
                     <i className="fa-solid fa-star text-[#f3c531]"></i>
