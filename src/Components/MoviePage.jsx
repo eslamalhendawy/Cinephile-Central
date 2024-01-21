@@ -28,7 +28,6 @@ function MoviePage() {
       setHours(hours);
       let minutes = tempRuntime % 60;
       setMinutes(minutes);
-      console.log(temp);
       setMovie(temp);
       setFetching(false);
     };
@@ -79,8 +78,7 @@ function MoviePage() {
                   <div className="w-full relative group">
                     {movie.videos.results.length !== 0 ? (
                       <a href={`https://www.youtube.com/watch?v=${movie.videos.results[movie.videos.results.length - 1].key}`}>
-                        {/* <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[0].file_path}`} alt="" /> */}
-                        {movie.images.backdrops ? <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[0].file_path}`} alt="" /> : <div className="h-full "></div>}
+                        {movie.images.backdrops ? <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[0].file_path}`} alt="" /> : <div className="h-full py-6"></div>}
                         <div className="absolute top-0 right-0 flex justify-center items-center w-full h-full bg-black/80">
                           <p className="text-xl font-semibold group-hover:text-[#f3c531] duration-300">Watch Trailer</p>
                         </div>
@@ -168,17 +166,14 @@ function MoviePage() {
             ) : (
               ""
             )}
-
-            <div>
-              {movie.videos.results.length > 0 ? (
-                <>
-                  <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Similar Movies</h3>
-                </>
-              ) : (
-                ""
-              )}
-            </div>
-            {similar == null ? "" : <MovieSlider list={similar} />}
+            {similar == null ? (
+              ""
+            ) : (
+              <>
+                <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Similar Movies</h3>
+                <MovieSlider list={similar} />
+              </>
+            )}
           </div>
         </>
       )}

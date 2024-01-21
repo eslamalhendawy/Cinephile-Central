@@ -48,9 +48,10 @@ function ShowPage() {
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                     <h2 className="text-3xl">{show.name}</h2>
                     <div className="flex items-center gap-2">
-                      <p className="text-lg">({show.first_air_date.split("-")[0]})</p>
+                      {show.first_air_date !== "" ? <p className="text-lg">({show.first_air_date.split("-")[0]})</p> : ""}
                       <p className="text-lg">
-                        ({show.number_of_seasons} seasons) ({show.number_of_episodes} episodes)
+                        {show.number_of_seasons == 0 ? null : `(${show.number_of_seasons} seasons) `}
+                        {show.number_of_episodes == 0 ? null : `(${show.number_of_episodes} episodes)`}
                       </p>
                     </div>
                   </div>
@@ -71,7 +72,7 @@ function ShowPage() {
                   <div className="w-full relative group">
                     {show.videos.results.length !== 0 ? (
                       <a href={`https://www.youtube.com/watch?v=${show.videos.results[show.videos.results.length - 1].key}`}>
-                        <img className="h-full" src={`https://image.tmdb.org/t/p/original${show.images.backdrops[0].file_path}`} alt="" />
+                        {show.images.backdrops ? <img className="h-full" src={`https://image.tmdb.org/t/p/original${show.images.backdrops[0].file_path}`} alt="" /> : <div className="h-full py-6"></div>}
                         <div className="absolute top-0 right-0 flex justify-center items-center w-full h-full bg-black/80">
                           <p className="text-xl font-semibold group-hover:text-[#f3c531] duration-300">Watch Trailer</p>
                         </div>
@@ -158,8 +159,14 @@ function ShowPage() {
               ""
             )}
 
-            <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Similar TV Shows</h3>
-            {similar == null ? "" : <ShowSlider list={similar} />}
+            {similar == null ? (
+              ""
+            ) : (
+              <>
+                <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Similar TV Shows</h3>
+                <ShowSlider list={similar} />
+              </>
+            )}
           </div>
         </>
       )}
