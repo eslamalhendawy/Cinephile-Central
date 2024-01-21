@@ -23,6 +23,7 @@ function MoviePage() {
     const id = parts[parts.length - 1];
     const fetchData = async () => {
       let temp = await getMoviePageData(id);
+      console.log(temp);
       let tempRuntime = temp.runtime;
       let hours = Math.floor(tempRuntime / 60);
       setHours(hours);
@@ -35,15 +36,16 @@ function MoviePage() {
     const fetchSimilar = async () => {
       if (fetching) {
         return;
-      } else {
+      } else if (movie.genres.length > 0) {
         let temp = await getMoviesByGenre(movie.genres[0].id);
+        console.log(temp);
         setSimilar(temp.data.results);
       }
     };
     fetchSimilar();
-  }, [fetching]);
+  }, []);
   return (
-    <div className="bg-white">
+    <div className="bg-white minHeight">
       {fetching ? (
         <div className="minHeight bg-[#121212]"></div>
       ) : (
@@ -55,9 +57,9 @@ function MoviePage() {
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2">
                     <h2 className="text-3xl">{movie.title}</h2>
                     <div className="flex items-center gap-2">
-                      <p className="text-lg">({movie.release_date.split("-")[0]})</p>
+                      {movie.release_date !== "" ? <p className="text-lg">({movie.release_date.split("-")[0]})</p> : ""}
                       <p className="text-lg">
-                        {hours}h {minutes}m
+                        {hours == 0 ? null : `${hours}h`} {minutes == 0 ? null : `${minutes}m`}
                       </p>
                     </div>
                   </div>
@@ -78,7 +80,8 @@ function MoviePage() {
                   <div className="w-full relative group">
                     {movie.videos.results.length !== 0 ? (
                       <a href={`https://www.youtube.com/watch?v=${movie.videos.results[movie.videos.results.length - 1].key}`}>
-                        <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[0].file_path}`} alt="" />
+                        {/* <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[0].file_path}`} alt="" /> */}
+                        {movie.images.backdrop ? <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[0].file_path}`} alt="" /> : <div className="h-full "></div>}
                         <div className="absolute top-0 right-0 flex justify-center items-center w-full h-full bg-black/80">
                           <p className="text-xl font-semibold group-hover:text-[#f3c531] duration-300">Watch Trailer</p>
                         </div>
@@ -120,12 +123,14 @@ function MoviePage() {
                   )}
                 </div>
                 <p className="border-b border-gray-500 mb-2"></p>
-                <div className=" items-center justify-between sm:justify-normal sm:gap-x-40">
-                  <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Official Site</h3>
-                  <a className="text-[#5e99ed] hover:text-[#45638d] duration-300 lg:text-lg" href={movie.homepage}>
-                    Visit
-                  </a>
-                </div>
+                {movie.homepage === "" ? null : (
+                  <div className=" items-center justify-between sm:justify-normal sm:gap-x-40">
+                    <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Official Site</h3>
+                    <a className="text-[#5e99ed] hover:text-[#45638d] duration-300 lg:text-lg" href={movie.homepage}>
+                      Visit
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -165,25 +170,21 @@ function MoviePage() {
               ""
             )}
 
-            <div>{movie.videos.results.length > 0 ? "" : ""}</div>
-            <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Similar Movies</h3>
+            <div>
+              {movie.videos.results.length > 0 ? (
+                <>
+                  <h3 className="text-[#212121] font-semibold text-3xl mb-2 border-l-4 pl-2 border-[#f3c531]">Similar Movies</h3>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
             {similar == null ? "" : <MovieSlider list={similar} />}
           </div>
         </>
       )}
     </div>
   );
-}
-{
-  /* (movie.videos.results.slice(0, 6).map((video, index) => {
-                return (
-                  <div key={index}>
-                    <a className="text-[#5e99ed] hover:text-[#45638d] duration-300 lg:text-lg" href={`https://www.youtube.com/watch?v=${video.key}`}>
-                      {video.name}
-                    </a>
-                  </div>
-                );
-              })) */
 }
 
 export default MoviePage;
