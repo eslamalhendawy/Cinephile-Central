@@ -23,7 +23,6 @@ function MoviePage() {
     const id = parts[parts.length - 1];
     const fetchData = async () => {
       let temp = await getMoviePageData(id);
-      console.log(temp);
       let tempRuntime = temp.runtime;
       let hours = Math.floor(tempRuntime / 60);
       setHours(hours);
@@ -38,12 +37,11 @@ function MoviePage() {
         return;
       } else if (movie.genres.length > 0) {
         let temp = await getMoviesByGenre(movie.genres[0].id);
-        console.log(temp);
         setSimilar(temp.data.results);
       }
     };
     fetchSimilar();
-  }, []);
+  }, [fetching]);
   return (
     <div className="bg-white minHeight">
       {fetching ? (
