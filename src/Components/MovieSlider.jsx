@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { Tooltip } from "react-tooltip";
@@ -6,7 +6,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 function MovieSlider({ list }) {
-  const navigate = useNavigate();
   return (
     <Swiper
       className="mb-6 "
@@ -33,11 +32,7 @@ function MovieSlider({ list }) {
       {list.map((movie, index) => {
         return (
           <SwiperSlide className="mb-12" key={index}>
-            <div
-              onClick={() => {
-                navigate(`/movie/${movie.id}`);
-                location.reload();
-              }}
+            <Link to={`/movie/${movie.id}`}
             >
               <div className="group cursor-pointer">
                 <div>{movie.poster_path == null ? <div className="bg-[#121212] max-w-[290px] h-[180px] sm:h-[320px] lg:h-[400px] flex justify-center items-center">No Poster Found</div> : <img className="max-w-full" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />}</div>
@@ -53,7 +48,7 @@ function MovieSlider({ list }) {
                   <p className="bg-[#2c2c2c] group-hover:bg-[#30353c] duration-300 p-2 text-center text-[#5e99ed] font-bold cursor-pointer">More Info</p>
                 </div>
               </div>
-            </div>
+            </Link>
           </SwiperSlide>
         );
       })}

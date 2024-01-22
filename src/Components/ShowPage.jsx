@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getShowPageData } from "../Services/APICalls";
 import { getShowsByGenre } from "../Services/APICalls";
 import ShowSlider from "./ShowSlider";
 
 function ShowPage() {
+  const { id } = useParams();
   const [show, setShow] = useState();
   const [similar, setSimilar] = useState(null);
   const [fetching, setFetching] = useState(true);
@@ -14,10 +16,6 @@ function ShowPage() {
 
   useEffect(() => {
     setFetching(true);
-    let currentURL = window.location.href;
-    let decodedURL = decodeURIComponent(currentURL);
-    let parts = decodedURL.split("/");
-    const id = parts[parts.length - 1];
     const fetchData = async () => {
       let temp = await getShowPageData(id);
       setShow(temp);
@@ -33,7 +31,7 @@ function ShowPage() {
       }
     };
     fetchSimilar();
-  }, [fetching]);
+  }, [fetching, id]);
 
   return (
     <div className="bg-white">

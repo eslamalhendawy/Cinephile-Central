@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { Tooltip } from "react-tooltip";
@@ -33,11 +33,7 @@ function ShowSlider({ list }) {
       {list.map((show, index) => {
         return (
           <SwiperSlide className="mb-12" key={index}>
-            <div
-              onClick={() => {
-                navigate(`/tv/${show.id}`);
-                location.reload();
-              }}
+            <Link to={`/tv/${show.id}`}
             >
               <div className="group cursor-pointer">
                 <div>{show.poster_path == null ? <div className="bg-[#121212] max-w-[290px] h-[180px] sm:h-[320px] lg:h-[400px] flex justify-center items-center">No Poster Found</div> : <img className="max-w-full" src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt="" />}</div>
@@ -53,7 +49,7 @@ function ShowSlider({ list }) {
                   <p className="bg-[#2c2c2c] group-hover:bg-[#30353c] duration-300 p-2 text-center text-[#5e99ed] font-bold cursor-pointer">More Info</p>
                 </div>
               </div>
-            </div>
+            </Link>
           </SwiperSlide>
         );
       })}

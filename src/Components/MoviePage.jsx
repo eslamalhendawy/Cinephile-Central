@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { getMoviePageData } from "../Services/APICalls";
 import { getMoviesByGenre } from "../Services/APICalls";
 import MovieSlider from "./MovieSlider";
 
 function MoviePage() {
+  const { id } = useParams();
   const [movie, setMovie] = useState();
   const [similar, setSimilar] = useState(null);
   const [hours, setHours] = useState();
@@ -17,10 +19,6 @@ function MoviePage() {
 
   useEffect(() => {
     setFetching(true);
-    let currentURL = window.location.href;
-    let decodedURL = decodeURIComponent(currentURL);
-    let parts = decodedURL.split("/");
-    const id = parts[parts.length - 1];
     const fetchData = async () => {
       let temp = await getMoviePageData(id);
       let tempRuntime = temp.runtime;
@@ -41,7 +39,7 @@ function MoviePage() {
       }
     };
     fetchSimilar();
-  }, [fetching]);
+  }, [fetching, id]);
   return (
     <div className="bg-white minHeight">
       {fetching ? (
