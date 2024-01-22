@@ -27,7 +27,6 @@ function MoviePage() {
       let minutes = tempRuntime % 60;
       setMinutes(minutes);
       setMovie(temp);
-      console.log(temp);
       setFetching(false);
     };
     fetchData();
