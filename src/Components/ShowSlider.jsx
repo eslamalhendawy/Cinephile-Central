@@ -57,8 +57,5 @@ function ShowSlider({ list }) {
   );
 }
 
-{
-  /* <img className="max-w-full" src={`https://image.tmdb.org/t/p/w500${show.poster_path}`} alt="" /> */
-}
 
 export default ShowSlider;
