@@ -27,6 +27,7 @@ function MoviePage() {
       let minutes = tempRuntime % 60;
       setMinutes(minutes);
       setMovie(temp);
+      console.log(temp);
       setFetching(false);
     };
     fetchData();
@@ -105,18 +106,27 @@ function MoviePage() {
                   </>
                 ) : null}
                 <p className="border-b border-gray-500 mb-2"></p>
-                <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Staring</h3>
-                <div className="flex gap-2 text-[#5e99ed] lg:text-lg mb-2">
-                  {movie.credits.cast.length >= 3 ? (
-                    <>
-                      <p>{movie.credits.cast[0].name}</p>
-                      <p>{movie.credits.cast[1].name}</p>
-                      <p>{movie.credits.cast[2].name}</p>
-                    </>
-                  ) : (
-                    <p>No Cast Members Found</p>
-                  )}
-                </div>
+                {movie.credits.cast.length !== 0 ? (<>
+                  <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Staring</h3>
+                  <div className="flex gap-2 text-[#5e99ed] lg:text-lg mb-2">
+                  {movie.credits.cast.filter((item, index) => index < 3).map((movie, index, array) => {
+                    if(array.length == 0) {
+                      return (
+                        <p key={index}>No Cast Members Found</p>
+                      )
+                    }else {
+                      return(
+                      <p key={index}>{movie.name}</p>
+                    )
+                    }
+                  })}
+                  </div>
+                </>) : (
+                  <>
+                  <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Staring</h3>
+                  <p className="text-[#5e99ed] lg:text-lg mb-2">No Cast Members Found</p>
+                  </>
+                )}
                 <p className="border-b border-gray-500 mb-2"></p>
                 {movie.homepage === "" ? null : (
                   <div className=" items-center justify-between sm:justify-normal sm:gap-x-40">

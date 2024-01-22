@@ -99,18 +99,41 @@ function ShowPage() {
                   </>
                 ) : null}
                 <p className="border-b border-gray-500 mb-2"></p>
-                <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Staring</h3>
+                {show.credits.cast.length !== 0 ? (<>
+                  <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Staring</h3>
+                  <div className="flex gap-2 text-[#5e99ed] lg:text-lg mb-2">
+                  {show.credits.cast.filter((item, index) => index < 3).map((show, index, array) => {
+                    if(array.length == 0) {
+                      return (
+                        <p key={index}>No Cast Members Found</p>
+                      )
+                    }else {
+                      return(
+                      <p key={index}>{show.name}</p>
+                    )
+                    }
+                  })}
+                  </div>
+                </>) : (
+                  <>
+                  <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Staring</h3>
+                  <p className="text-[#5e99ed] lg:text-lg mb-2">No Cast Members Found</p>
+                  </>
+                )}
+                {/* <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Staring</h3>
                 <div className="flex gap-2 text-[#5e99ed] lg:text-lg mb-2">
-                  {show.credits.cast.length >= 3 ? (
-                    <>
-                      <p>{show.credits.cast[0].name}</p>
-                      <p>{show.credits.cast[1].name}</p>
-                      <p>{show.credits.cast[2].name}</p>
-                    </>
-                  ) : (
-                    <p>No Cast Members Found</p>
-                  )}
-                </div>
+                  {show.credits.cast.filter((item, index) => index < 3).map((item, index, array) => {
+                    if(array.length == 0){
+                      return (
+                        <p key={index}>No Cast Members Found</p>
+                      )
+                    }else{
+                      return(
+                      <p key={index}>{item.name}</p>
+                    )
+                    }
+                  })}
+                </div> */}
                 <p className="border-b border-gray-500 mb-2"></p>
                 <div className=" items-center justify-between sm:justify-normal sm:gap-x-40">
                   <h3 className="text-[#f3c531] font-semibold text-lg lg:text-xl mb-1">Official Site</h3>
