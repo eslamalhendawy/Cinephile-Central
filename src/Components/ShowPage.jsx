@@ -69,7 +69,7 @@ function ShowPage() {
                   </div>
                   <div className="w-full relative group">
                     {show.videos.results.length !== 0 ? (
-                      <a href={`https://www.youtube.com/watch?v=${show.videos.results[show.videos.results.length - 1].key}`}>
+                      <a target="_blank" rel="noreferrer" href={`https://www.youtube.com/watch?v=${show.videos.results[show.videos.results.length - 1].key}`}>
                         {show.images.backdrops ? <img className="h-full" src={`https://image.tmdb.org/t/p/original${show.images.backdrops[0].file_path}`} alt="" /> : <div className="h-full py-6"></div>}
                         <div className="absolute top-0 right-0 flex justify-center items-center w-full h-full bg-black/80">
                           <p className="text-xl font-semibold group-hover:text-[#f3c531] duration-300">Watch Trailer</p>

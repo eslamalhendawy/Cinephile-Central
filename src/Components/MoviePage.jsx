@@ -75,7 +75,7 @@ function MoviePage() {
                   </div>
                   <div className="w-full relative group">
                     {movie.videos.results.length !== 0 ? (
-                      <a href={`https://www.youtube.com/watch?v=${movie.videos.results[movie.videos.results.length - 1].key}`}>
+                      <a target="_blank" rel="noreferrer" href={`https://www.youtube.com/watch?v=${movie.videos.results[movie.videos.results.length - 1].key}`}>
                         {movie.images.backdrops ? <img className="h-full" src={`https://image.tmdb.org/t/p/original${movie.images.backdrops[0].file_path}`} alt="" /> : <div className="h-full py-6"></div>}
                         <div className="absolute top-0 right-0 flex justify-center items-center w-full h-full bg-black/80">
                           <p className="text-xl font-semibold group-hover:text-[#f3c531] duration-300">Watch Trailer</p>
